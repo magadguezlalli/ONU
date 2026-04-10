@@ -206,6 +206,14 @@
   <div class="insight">El 62% de las denuncias no tiene región registrada — un sub-registro que probablemente es mayor en zonas con menos infraestructura para reportar, sesgando los resultados hacia las regiones más conectadas.</div>
 </div>
 
+<p class="section-title">Densidad de antenas por provincia</p>
+<div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;padding:1.5rem;margin-bottom:2rem;">
+  <p style="font-size:11px;color:#888780;margin-bottom:1rem;">Solo se muestran provincias con antenas registradas en OpenCellID.</p>
+  <div style="position:relative;width:100%;height:320px;">
+    <canvas id="barChart" role="img" aria-label="Gráfico de barras de antenas por provincia">CABA 1908, Buenos Aires 1481, Córdoba 1059, Santa Fe 808, Misiones 660, Corrientes 531, Río Negro 322, La Pampa 79, San Luis 59, Tierra del Fuego 45, Mendoza 39, Entre Ríos 39, San Juan 27, Santa Cruz 1.</canvas>
+  </div>
+</div>
+
 <p class="footer">Fuentes: OpenCellID (722_argentina.csv) · Ministerio de las Mujeres, Géneros y Diversidad — llamados atendidos violencia familiar 2017–2024</p>
 
 <script>
@@ -226,6 +234,68 @@ function aplicarFiltros() {
     });
   });
 }
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function aplicarFiltros() {
+  const region = document.getElementById('filtroRegion').value;
+  const tipo   = document.getElementById('filtroTipo').value;
+  document.querySelectorAll('#regionGrid .region-card').forEach(card => {
+    const matchRegion = region === 'todas' || card.dataset.region === region;
+    card.classList.toggle('hidden', !matchRegion);
+    card.querySelectorAll('.antena-row').forEach(row => {
+      if (tipo === 'todos') row.classList.remove('dimmed');
+      else row.classList.toggle('dimmed', row.dataset.tipo !== tipo);
+    });
+  });
+}
+
+const provincias = ['CABA','Bs. Aires','Córdoba','Santa Fe','Misiones','Corrientes','Río Negro','La Pampa','San Luis','T. del Fuego','Mendoza','Entre Ríos','San Juan','Santa Cruz'];
+const antenas   = [1908, 1481, 1059, 808, 660, 531, 322, 79, 59, 45, 39, 39, 27, 1];
+const maxVal = antenas[0];
+
+const colores = antenas.map(n => {
+  const t = Math.pow(n / maxVal, 0.45);
+  const r = Math.round(240 + (30  - 240) * t);
+  const g = Math.round(244 + (58  - 244) * t);
+  const b = Math.round(255 + (138 - 255) * t);
+  return `rgb(${r},${g},${b})`;
+});
+
+new Chart(document.getElementById('barChart'), {
+  type: 'bar',
+  data: {
+    labels: provincias,
+    datasets: [{
+      label: 'Antenas',
+      data: antenas,
+      backgroundColor: colores,
+      borderRadius: 4,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.parsed.y.toLocaleString('es-AR')} antenas`
+        }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { font: { size: 11 }, autoSkip: false, maxRotation: 35 },
+        grid: { display: false }
+      },
+      y: {
+        ticks: { font: { size: 11 }, callback: v => v.toLocaleString('es-AR') },
+        grid: { color: 'rgba(0,0,0,0.06)' }
+      }
+    }
+  }
+});
 </script>
 </body>
 </html>
