@@ -260,17 +260,17 @@ HTML = f"""<!DOCTYPE html>
 <title>Radiografía de los Dispositivos Electrónicos de Protección — Argentina 2017–2024</title>
 <style>
   *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 2rem; max-width: 1100px; margin: 0 auto; }}
-  h1 {{ font-size: 20px; font-weight: 500; margin-bottom: 4px; }}
+  body {{ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #141412; color: #e8e6e0; padding: 2rem; max-width: 1100px; margin: 0 auto; }}
+  h1 {{ font-size: 20px; font-weight: 500; color: #e8e6e0; margin-bottom: 4px; }}
   .subtitle {{ font-size: 13px; color: #5f5e5a; margin-bottom: 2rem; }}
   .kpis {{ display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 2rem; }}
-  .kpi {{ width: 180px; flex-shrink: 0; background: #ebebea; border-radius: 8px; padding: 14px 16px; }}
+  .kpi {{ width: 180px; flex-shrink: 0; background: #1e1e1b; border-radius: 8px; padding: 14px 16px; }}
   @media (max-width: 480px) {{ .kpi {{ width: calc(50% - 5px); }} }}
-  .kpi-label {{ font-size: 12px; color: #5f5e5a; margin-bottom: 4px; }}
-  .kpi-value {{ font-size: 24px; font-weight: 500; }}
-  .kpi-sub {{ font-size: 11px; color: #888780; margin-top: 3px; }}
-  .section-title {{ font-size: 11px; font-weight: 500; color: #888780; letter-spacing: 0.06em; text-transform: uppercase; margin: 2rem 0 1rem; }}
-  .legend {{ display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: #5f5e5a; margin-bottom: 1rem; }}
+  .kpi-label {{ font-size: 12px; color: #888780; margin-bottom: 4px; }}
+  .kpi-value {{ font-size: 24px; font-weight: 500; color: #e8e6e0; }}
+  .kpi-sub {{ font-size: 11px; color: #5f5e5a; margin-top: 3px; }}
+  .section-title {{ font-size: 11px; font-weight: 500; color: #5f5e5a; letter-spacing: 0.06em; text-transform: uppercase; margin: 2rem 0 1rem; }}
+  .legend {{ display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: #888780; margin-bottom: 1rem; }}
   .legend span {{ display: flex; align-items: center; gap: 5px; }}
   .dot {{ width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; display: inline-block; }}
   .region-grid {{ display: grid; grid-template-columns: repeat(3, 220px); justify-content: center; gap: 10px; margin-bottom: 2rem; }}
@@ -278,7 +278,7 @@ HTML = f"""<!DOCTYPE html>
   @media (max-width: 480px) {{ .region-grid {{ grid-template-columns: 1fr; }} }}
   .region-card {{ background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 14px; }}
   .region-card.riesgo {{ border: 1.5px solid #D85A30; }}
-  .region-name {{ font-size: 14px; font-weight: 500; margin-bottom: 8px; }}
+  .region-name {{ font-size: 14px; font-weight: 500; color: #1a1a18; margin-bottom: 8px; }}
   .region-stat {{ font-size: 12px; color: #5f5e5a; margin: 3px 0; }}
   .ratio-bar {{ height: 4px; border-radius: 2px; background: #d3d1c7; margin: 10px 0 5px; }}
   .ratio-fill {{ height: 4px; border-radius: 2px; }}
@@ -287,9 +287,9 @@ HTML = f"""<!DOCTYPE html>
   .badge-ok {{ background: #EAF3DE; color: #3B6D11; }}
   .badge-warn {{ background: #FAEEDA; color: #854F0B; }}
   .filter-bar {{ display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 1rem; }}
-  .filter-bar label {{ font-size: 13px; color: #5f5e5a; }}
-  .filter-bar select {{ font-size: 13px; padding: 6px 10px; border: 0.5px solid rgba(0,0,0,0.2); border-radius: 8px; background: #fff; color: #1a1a18; cursor: pointer; }}
-  .filter-sep {{ width: 0.5px; height: 24px; background: rgba(0,0,0,0.15); }}
+  .filter-bar label {{ font-size: 13px; color: #888780; }}
+  .filter-bar select {{ font-size: 13px; padding: 6px 10px; border: 0.5px solid rgba(255,255,255,0.15); border-radius: 8px; background: #1e1e1b; color: #e8e6e0; cursor: pointer; }}
+  .filter-sep {{ width: 0.5px; height: 24px; background: rgba(255,255,255,0.1); }}
   .region-card.hidden {{ display: none; }}
   .antena-desglose {{ margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }}
   .antena-row {{ display: flex; align-items: center; gap: 6px; font-size: 11px; color: #5f5e5a; transition: opacity 0.2s; }}
@@ -299,14 +299,19 @@ HTML = f"""<!DOCTYPE html>
   .tag-lte  {{ background: #EAF3DE; color: #3B6D11; }}
   .antena-row.dimmed {{ opacity: 0.2; }}
   .insights {{ display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }}
-  .insight {{ background: #fff; border-left: 3px solid #D85A30; border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; line-height: 1.7; border-top: 0.5px solid rgba(0,0,0,0.08); border-right: 0.5px solid rgba(0,0,0,0.08); border-bottom: 0.5px solid rgba(0,0,0,0.08); }}
-  .tipos-wrap {{ background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }}
+  .insight {{ background: #1e1e1b; border-left: 3px solid #D85A30; border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; color: #b4b2a9; line-height: 1.7; border-top: 0.5px solid rgba(255,255,255,0.06); border-right: 0.5px solid rgba(255,255,255,0.06); border-bottom: 0.5px solid rgba(255,255,255,0.06); }}
+  .tipos-wrap {{ background: #1e1e1b; border: 0.5px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }}
   .tipo-row {{ display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-size: 13px; }}
-  .tipo-label {{ min-width: 200px; color: #2c2c2a; }}
-  .tipo-bar-wrap {{ flex: 1; height: 6px; background: #ebebea; border-radius: 3px; }}
+  .tipo-label {{ min-width: 200px; color: #b4b2a9; }}
+  .tipo-bar-wrap {{ flex: 1; height: 6px; background: #2c2c2a; border-radius: 3px; }}
   .tipo-bar-fill {{ height: 6px; border-radius: 3px; background: #D85A30; }}
-  .tipo-count {{ min-width: 60px; text-align: right; color: #5f5e5a; font-size: 12px; }}
-  .footer {{ font-size: 11px; color: #888780; border-top: 0.5px solid rgba(0,0,0,0.12); padding-top: 1rem; margin-top: 1rem; }}
+  .tipo-count {{ min-width: 60px; text-align: right; color: #888780; font-size: 12px; }}
+  .deriv-row {{ display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }}
+  .deriv-label {{ font-size: 12px; color: #b4b2a9; width: 220px; flex-shrink: 0; }}
+  .deriv-bar {{ flex: 1; height: 6px; background: #2c2c2a; border-radius: 3px; }}
+  .deriv-fill {{ height: 6px; border-radius: 3px; }}
+  .deriv-pct {{ font-size: 12px; font-weight: 500; min-width: 40px; text-align: right; }}
+  .footer {{ font-size: 11px; color: #444441; border-top: 0.5px solid rgba(255,255,255,0.06); padding-top: 1rem; margin-top: 1rem; }}
 </style>
 </head>
 <body>
@@ -318,12 +323,12 @@ HTML = f"""<!DOCTYPE html>
   <div class="kpi"><p class="kpi-label">Llamados a Línea 137</p><p class="kpi-value">{fmt(total_llamados)}</p><p class="kpi-sub">2017 – jul.2024</p></div>
   <div class="kpi"><p class="kpi-label">Equipo móvil desplazado</p><p class="kpi-value">{fmt(equipo_desplazado)}</p><p class="kpi-sub">solo el {pct_desplazado}% de los llamados</p></div>
   <div class="kpi"><p class="kpi-label">Antenas registradas</p><p class="kpi-value">{fmt(total_antenas)}</p><p class="kpi-sub">GSM + UMTS + LTE</p></div>
-  <div class="kpi" style="border:1.5px dashed #D85A30;">
+  <div class="kpi" style="border:1.5px dashed #993C1D;background:#1e1e1b;">
     <p class="kpi-label" style="color:#D85A30;">Botones antipánico asignados</p>
     <p class="kpi-value" style="color:#D85A30;">SIN DATO</p>
     <p class="kpi-sub">no hay registro público</p>
   </div>
-  <div class="kpi" style="border:1.5px dashed #D85A30;">
+  <div class="kpi" style="border:1.5px dashed #993C1D;background:#1e1e1b;">
     <p class="kpi-label" style="color:#D85A30;">Activaciones exitosas con respuesta</p>
     <p class="kpi-value" style="color:#D85A30;">SIN DATO</p>
     <p class="kpi-sub">no hay registro público</p>
@@ -362,18 +367,18 @@ HTML = f"""<!DOCTYPE html>
 </div>
 
 <p class="section-title">La cadena que se rompe — ¿qué pasó con los llamados? (2017–2024)</p>
-<div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;padding:1.5rem;margin-bottom:2rem;">
+<div style="background:#1e1e1b;border:0.5px solid rgba(255,255,255,0.06);border-radius:12px;padding:1.5rem;margin-bottom:2rem;">
   <div style="display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-start;">
     <div style="flex:1;min-width:260px;">
-      <p style="font-size:12px;color:#5f5e5a;margin-bottom:1rem;">Derivación de cada llamado atendido</p>
+      <p style="font-size:12px;color:#888780;margin-bottom:1rem;">Derivación de cada llamado atendido</p>
       <div id="derivaciones-list"></div>
     </div>
     <div style="flex:0 0 260px;min-width:220px;">
-      <p style="font-size:12px;color:#5f5e5a;margin-bottom:0.5rem;">Llamados por año</p>
+      <p style="font-size:12px;color:#888780;margin-bottom:0.5rem;">Llamados por año</p>
       <div style="position:relative;width:100%;height:200px;">
         <canvas id="añosChart" role="img" aria-label="Llamados por año">{aria_años}</canvas>
       </div>
-      <div style="background:#FAECE7;border-radius:8px;padding:10px 12px;margin-top:12px;font-size:12px;color:#993C1D;line-height:1.6;">
+      <div style="background:#4A1B0C;border-radius:8px;padding:10px 12px;margin-top:12px;font-size:12px;color:#F0997B;line-height:1.6;">
         Solo el <strong>{pct_desplazado}%</strong> de los llamados resultó en desplazamiento de un equipo móvil. El <strong>{pct_info}%</strong> solo recibió información y orientación.
       </div>
     </div>
@@ -381,8 +386,8 @@ HTML = f"""<!DOCTYPE html>
 </div>
 
 <p class="section-title">Densidad de antenas por provincia</p>
-<div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;padding:1.5rem;margin-bottom:2rem;">
-  <p style="font-size:11px;color:#888780;margin-bottom:1rem;">Solo se muestran provincias con antenas registradas en OpenCellID.</p>
+<div style="background:#1e1e1b;border:0.5px solid rgba(255,255,255,0.06);border-radius:12px;padding:1.5rem;margin-bottom:2rem;">
+  <p style="font-size:11px;color:#5f5e5a;margin-bottom:1rem;">Solo se muestran provincias con antenas registradas en OpenCellID.</p>
   <div style="position:relative;width:100%;height:320px;">
     <canvas id="barChart" role="img" aria-label="Antenas por provincia">{aria_bar}</canvas>
   </div>
@@ -390,7 +395,7 @@ HTML = f"""<!DOCTYPE html>
 
 <p class="section-title">¿Qué pasa cuando no hay datos?</p>
 <div class="insights">
-  <div class="insight">El botón antipánico envía la ubicación GPS de la víctima en tiempo real. <strong>Sin datos móviles, este envío no llega.</strong> En zonas con solo antenas GSM (2G), la conexión puede ser demasiado lenta para transmitir la ubicación en tiempo crítico.</div>
+  <div class="insight">El botón antipánico envía la ubicación GPS de la víctima en tiempo real. <strong style="color:#e8e6e0;">Sin datos móviles, este envío no llega.</strong> En zonas con solo antenas GSM (2G), la conexión puede ser demasiado lenta para transmitir la ubicación en tiempo crítico.</div>
   <div class="insight">Patagonia y Cuyo concentran la menor cantidad de antenas LTE del país. En zonas rurales de estas regiones, el dispositivo puede quedar intentando conectarse sin éxito al activar el botón.</div>
   <div class="insight">El {pct_sin_region}% de los llamados no tiene región registrada — un sub-registro que probablemente es mayor en zonas con menos infraestructura para reportar, sesgando los resultados hacia las regiones más conectadas.</div>
 </div>
@@ -422,8 +427,8 @@ const barChart = new Chart(document.getElementById('barChart'), {{
     responsive:true, maintainAspectRatio:false,
     plugins:{{ legend:{{display:false}}, tooltip:{{callbacks:{{label:ctx=>` ${{ctx.parsed.y.toLocaleString('es-AR')}} antenas`}}}} }},
     scales:{{
-      x:{{ ticks:{{font:{{size:11}},autoSkip:false,maxRotation:35}}, grid:{{display:false}} }},
-      y:{{ ticks:{{font:{{size:11}},callback:v=>v.toLocaleString('es-AR')}}, grid:{{color:'rgba(0,0,0,0.06)'}} }}
+      x:{{ ticks:{{font:{{size:11}},autoSkip:false,maxRotation:35,color:'#888780'}}, grid:{{display:false}} }},
+      y:{{ ticks:{{font:{{size:11}},callback:v=>v.toLocaleString('es-AR'),color:'#888780'}}, grid:{{color:'rgba(255,255,255,0.05)'}} }}
     }}
   }}
 }});
@@ -466,8 +471,8 @@ new Chart(document.getElementById('añosChart'), {{
     responsive:true, maintainAspectRatio:false,
     plugins:{{legend:{{display:false}},tooltip:{{callbacks:{{label:ctx=>` ${{ctx.parsed.y.toLocaleString('es-AR')}} llamados`}}}}}},
     scales:{{
-      x:{{ticks:{{font:{{size:10}}}},grid:{{display:false}}}},
-      y:{{ticks:{{font:{{size:10}},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v}},grid:{{color:'rgba(0,0,0,0.06)'}}}}
+      x:{{ticks:{{font:{{size:10}},color:'#888780'}},grid:{{display:false}}}},
+      y:{{ticks:{{font:{{size:10}},callback:v=>v>=1000?(v/1000).toFixed(0)+'k':v,color:'#888780'}},grid:{{color:'rgba(255,255,255,0.05)'}}}}
     }}
   }}
 }});
@@ -476,12 +481,10 @@ const derivaciones = {json.dumps(derivaciones_display, ensure_ascii=False)};
 const maxPct = Math.max(...derivaciones.map(d=>d.pct));
 const lista  = document.getElementById('derivaciones-list');
 derivaciones.forEach(d => {{
-  lista.innerHTML += `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-    <span style="font-size:12px;color:#2c2c2a;flex:1;">${{d.label}}</span>
-    <div style="width:120px;height:6px;background:#ebebea;border-radius:3px;flex-shrink:0;">
-      <div style="width:${{(d.pct/maxPct*100).toFixed(1)}}%;height:6px;border-radius:3px;background:${{d.color}};"></div>
-    </div>
-    <span style="font-size:12px;font-weight:500;color:${{d.color}};min-width:36px;text-align:right;">${{d.pct}}%</span>
+  lista.innerHTML += `<div class="deriv-row">
+    <span class="deriv-label">${{d.label}}</span>
+    <div class="deriv-bar"><div class="deriv-fill" style="width:${{(d.pct/maxPct*100).toFixed(1)}}%;background:${{d.color}};"></div></div>
+    <span class="deriv-pct" style="color:${{d.color}}">${{d.pct}}%</span>
   </div>`;
 }});
 </script>
