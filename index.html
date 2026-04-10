@@ -4,16 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radiografía de los Dispositivos Electrónicos de Protección — Argentina 2017–2024</title>
-
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f4f0; color: #1a1a18; padding: 2rem; max-width: 1100px; margin: 0 auto; }
   h1 { font-size: 20px; font-weight: 500; margin-bottom: 4px; }
   .subtitle { font-size: 13px; color: #5f5e5a; margin-bottom: 2rem; }
   .kpis { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 2rem; }
-  .kpi { width: 180px; flex-shrink: 0; }
+  .kpi { width: 180px; flex-shrink: 0; background: #ebebea; border-radius: 8px; padding: 14px 16px; }
   @media (max-width: 480px) { .kpi { width: calc(50% - 5px); } }
-  .kpi { background: #ebebea; border-radius: 8px; padding: 14px 16px; }
   .kpi-label { font-size: 12px; color: #5f5e5a; margin-bottom: 4px; }
   .kpi-value { font-size: 24px; font-weight: 500; }
   .kpi-sub { font-size: 11px; color: #888780; margin-top: 3px; }
@@ -22,9 +20,9 @@
   .legend span { display: flex; align-items: center; gap: 5px; }
   .dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; display: inline-block; }
   .region-grid { display: grid; grid-template-columns: repeat(3, 220px); justify-content: center; gap: 10px; margin-bottom: 2rem; }
-  .region-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 14px; }
   @media (max-width: 720px) { .region-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 480px) { .region-grid { grid-template-columns: 1fr; } }
+  .region-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 14px; }
   .region-card.riesgo { border: 1.5px solid #D85A30; }
   .region-name { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
   .region-stat { font-size: 12px; color: #5f5e5a; margin: 3px 0; }
@@ -64,7 +62,7 @@
 
 <div class="kpis">
   <div class="kpi"><p class="kpi-label">Llamados a Línea 137</p><p class="kpi-value">61.437</p><p class="kpi-sub">2017 – jul.2024</p></div>
-  <div class="kpi"><p class="kpi-label">Equipo móvil desplazado</p><p class="kpi-value">2.182</p><p class="kpi-sub">solo el 3,6% de los llamados</p></div>
+  <div class="kpi"><p class="kpi-label">Equipo móvil desplazado</p><p class="kpi-value">2.262</p><p class="kpi-sub">solo el 3.7% de los llamados</p></div>
   <div class="kpi"><p class="kpi-label">Antenas registradas</p><p class="kpi-value">7.200</p><p class="kpi-sub">GSM + UMTS + LTE</p></div>
   <div class="kpi" style="border:1.5px dashed #D85A30;">
     <p class="kpi-label" style="color:#D85A30;">Botones antipánico asignados</p>
@@ -88,12 +86,7 @@
   <label for="filtroRegion">Región:</label>
   <select id="filtroRegion" onchange="aplicarFiltros()">
     <option value="todas">Todas</option>
-    <option value="Metropolitana">Metropolitana</option>
-    <option value="Pampeana">Pampeana</option>
-    <option value="NEA">NEA</option>
-    <option value="NOA">NOA</option>
-    <option value="Cuyo">Cuyo</option>
-    <option value="Patagonia">Patagonia</option>
+    <option value="Metropolitana">Metropolitana</option><option value="Pampeana">Pampeana</option><option value="NEA">NEA</option><option value="NOA">NOA</option><option value="Cuyo">Cuyo</option><option value="Patagonia">Patagonia</option>
   </select>
   <span class="filter-sep"></span>
   <label for="filtroTipo">Tipo de antena:</label>
@@ -107,24 +100,24 @@
 <div class="region-grid" id="regionGrid">
   <div class="region-card" data-region="Metropolitana" data-gsm="85" data-umts="90" data-lte="2424">
     <p class="region-name">Metropolitana</p>
-    <p class="region-stat">17,326 denuncias</p>
-    <p class="region-stat antena-total">2,599 antenas</p>
+    <p class="region-stat">17.326 denuncias</p>
+    <p class="region-stat antena-total">2.599 antenas</p>
     <div class="antena-desglose">
       <div class="antena-row" data-tipo="GSM"><span class="antena-tag tag-gsm">GSM</span> 85 antenas</div>
       <div class="antena-row" data-tipo="UMTS"><span class="antena-tag tag-umts">UMTS</span> 90 antenas</div>
-      <div class="antena-row" data-tipo="LTE"><span class="antena-tag tag-lte">LTE</span> 2,424 antenas</div>
+      <div class="antena-row" data-tipo="LTE"><span class="antena-tag tag-lte">LTE</span> 2.424 antenas</div>
     </div>
     <div class="ratio-bar"><div class="ratio-fill" style="width:99%;background:#639922;"></div></div>
     <span class="badge badge-ok">cobertura adecuada</span>
   </div>
   <div class="region-card" data-region="Pampeana" data-gsm="125" data-umts="475" data-lte="2024">
     <p class="region-name">Pampeana</p>
-    <p class="region-stat">2,521 denuncias</p>
-    <p class="region-stat antena-total">2,624 antenas</p>
+    <p class="region-stat">2.521 denuncias</p>
+    <p class="region-stat antena-total">2.624 antenas</p>
     <div class="antena-desglose">
       <div class="antena-row" data-tipo="GSM"><span class="antena-tag tag-gsm">GSM</span> 125 antenas</div>
       <div class="antena-row" data-tipo="UMTS"><span class="antena-tag tag-umts">UMTS</span> 475 antenas</div>
-      <div class="antena-row" data-tipo="LTE"><span class="antena-tag tag-lte">LTE</span> 2,024 antenas</div>
+      <div class="antena-row" data-tipo="LTE"><span class="antena-tag tag-lte">LTE</span> 2.024 antenas</div>
     </div>
     <div class="ratio-bar"><div class="ratio-fill" style="width:100%;background:#639922;"></div></div>
     <span class="badge badge-ok">cobertura adecuada</span>
@@ -132,18 +125,18 @@
   <div class="region-card" data-region="NEA" data-gsm="121" data-umts="87" data-lte="1088">
     <p class="region-name">NEA</p>
     <p class="region-stat">618 denuncias</p>
-    <p class="region-stat antena-total">1,296 antenas</p>
+    <p class="region-stat antena-total">1.296 antenas</p>
     <div class="antena-desglose">
       <div class="antena-row" data-tipo="GSM"><span class="antena-tag tag-gsm">GSM</span> 121 antenas</div>
       <div class="antena-row" data-tipo="UMTS"><span class="antena-tag tag-umts">UMTS</span> 87 antenas</div>
-      <div class="antena-row" data-tipo="LTE"><span class="antena-tag tag-lte">LTE</span> 1,088 antenas</div>
+      <div class="antena-row" data-tipo="LTE"><span class="antena-tag tag-lte">LTE</span> 1.088 antenas</div>
     </div>
     <div class="ratio-bar"><div class="ratio-fill" style="width:49%;background:#639922;"></div></div>
     <span class="badge badge-ok">cobertura adecuada</span>
   </div>
   <div class="region-card riesgo" data-region="NOA" data-gsm="0" data-umts="0" data-lte="0">
     <p class="region-name">NOA</p>
-    <p class="region-stat">1,544 denuncias</p>
+    <p class="region-stat">1.544 denuncias</p>
     <p class="region-stat antena-total">0 antenas</p>
     <div class="antena-desglose">
       <div class="antena-row" data-tipo="GSM"><span class="antena-tag tag-gsm">GSM</span> 0 antenas</div>
@@ -179,33 +172,32 @@
   </div>
 </div>
 
-
-<p class="section-title">Tipos de violencia presentes en las denuncias</p>
+<p class="section-title">Tipos de violencia presentes en los llamados</p>
 <div class="tipos-wrap">
-  <p style="font-size:11px;color:#888780;margin-bottom:14px;">Un caso puede incluir múltiples tipos. Porcentaje sobre 61.437 denuncias totales.</p>
+  <p style="font-size:11px;color:#888780;margin-bottom:14px;">Un caso puede incluir múltiples tipos. Porcentaje sobre 61.437 llamados totales.</p>
   <div class="tipo-row">
     <span class="tipo-label">Psicológica</span>
-    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:81%;"></div></div>
-    <span class="tipo-count">81%</span>
+    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:100.0%;"></div></div>
+    <span class="tipo-count">81,0%</span>
   </div>
   <div class="tipo-row">
     <span class="tipo-label">Física</span>
-    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:46.4%;"></div></div>
-    <span class="tipo-count">46%</span>
+    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:57.3%;"></div></div>
+    <span class="tipo-count">46,4%</span>
   </div>
   <div class="tipo-row">
     <span class="tipo-label">Económica</span>
-    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:2.5%;"></div></div>
+    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:3.1%;"></div></div>
     <span class="tipo-count">2,5%</span>
   </div>
   <div class="tipo-row">
     <span class="tipo-label">Sexual</span>
-    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:1.5%;"></div></div>
+    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:1.9%;"></div></div>
     <span class="tipo-count">1,5%</span>
   </div>
   <div class="tipo-row">
     <span class="tipo-label">Otras / Trata</span>
-    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:0.5%;"></div></div>
+    <div class="tipo-bar-wrap"><div class="tipo-bar-fill" style="width:0.2%;"></div></div>
     <span class="tipo-count">0,2%</span>
   </div>
 </div>
@@ -220,10 +212,10 @@
     <div style="flex:0 0 260px;min-width:220px;">
       <p style="font-size:12px;color:#5f5e5a;margin-bottom:0.5rem;">Llamados por año</p>
       <div style="position:relative;width:100%;height:200px;">
-        <canvas id="añosChart" role="img" aria-label="Llamados por año 2017 a 2024">2017:9887, 2018:8054, 2019:7819, 2020:9088, 2021:9367, 2022:6935, 2023:6141, 2024:4146.</canvas>
+        <canvas id="añosChart" role="img" aria-label="Llamados por año">2017:9887, 2018:8054, 2019:7819, 2020:9088, 2021:9367, 2022:6935, 2023:6141, 2024*:4146</canvas>
       </div>
       <div style="background:#FAECE7;border-radius:8px;padding:10px 12px;margin-top:12px;font-size:12px;color:#993C1D;line-height:1.6;">
-        Solo el <strong>3,6%</strong> de los llamados resultó en desplazamiento de un equipo móvil. El <strong>51,7%</strong> solo recibió información y orientación.
+        Solo el <strong>3.7%</strong> de los llamados resultó en desplazamiento de un equipo móvil. El <strong>51.7%</strong> solo recibió información y orientación.
       </div>
     </div>
   </div>
@@ -233,7 +225,7 @@
 <div style="background:#fff;border:0.5px solid rgba(0,0,0,0.12);border-radius:12px;padding:1.5rem;margin-bottom:2rem;">
   <p style="font-size:11px;color:#888780;margin-bottom:1rem;">Solo se muestran provincias con antenas registradas en OpenCellID.</p>
   <div style="position:relative;width:100%;height:320px;">
-    <canvas id="barChart" role="img" aria-label="Gráfico de barras de antenas por provincia">CABA 1908, Buenos Aires 1481, Córdoba 1059, Santa Fe 808, Misiones 660, Corrientes 531, Río Negro 322, La Pampa 79, San Luis 59, Tierra del Fuego 45, Mendoza 39, Entre Ríos 39, San Juan 27, Santa Cruz 1.</canvas>
+    <canvas id="barChart" role="img" aria-label="Antenas por provincia">CABA 1908, Bs. Aires 1481, Córdoba 1059, Santa Fe 808, Misiones 660, Corrientes 548, Río Negro 322, La Pampa 79, San Luis 82, T. del Fuego 45, Mendoza 16, Entre Ríos 22, San Juan 27, Santa Cruz 1</canvas>
   </div>
 </div>
 
@@ -241,21 +233,20 @@
 <div class="insights">
   <div class="insight">El botón antipánico envía la ubicación GPS de la víctima en tiempo real. <strong>Sin datos móviles, este envío no llega.</strong> En zonas con solo antenas GSM (2G), la conexión puede ser demasiado lenta para transmitir la ubicación en tiempo crítico.</div>
   <div class="insight">Patagonia y Cuyo concentran la menor cantidad de antenas LTE del país. En zonas rurales de estas regiones, el dispositivo puede quedar intentando conectarse sin éxito al activar el botón.</div>
-  <div class="insight">El 62% de las denuncias no tiene región registrada — un sub-registro que probablemente es mayor en zonas con menos infraestructura para reportar, sesgando los resultados hacia las regiones más conectadas.</div>
+  <div class="insight">El 62% de los llamados no tiene región registrada — un sub-registro que probablemente es mayor en zonas con menos infraestructura para reportar, sesgando los resultados hacia las regiones más conectadas.</div>
 </div>
 
 <p class="footer">Fuentes: OpenCellID · Ministerio de las Mujeres, Géneros y Diversidad — llamados atendidos violencia familiar 2017–2024</p>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-// — Filtros —
-const provincias = ['CABA','Bs. Aires','Córdoba','Santa Fe','Misiones','Corrientes','Río Negro','La Pampa','San Luis','T. del Fuego','Mendoza','Entre Ríos','San Juan','Santa Cruz'];
-const datos = {
-  GSM:  [56,  90,  56,  22,  72,  32,  46, 17, 10,  6,  5,  2,  2, 0],
-  UMTS: [37, 279, 172,  75,  34,  33, 114, 26, 26, 18,  5,  7,  9, 0],
-  LTE:  [1815,1112,831,711,554,483,162,36,46,21,6,13,16,1],
+const provLabels = ["CABA", "Bs. Aires", "Córdoba", "Santa Fe", "Misiones", "Corrientes", "Río Negro", "La Pampa", "San Luis", "T. del Fuego", "Mendoza", "Entre Ríos", "San Juan", "Santa Cruz"];
+const datosProv = {
+  GSM:  [56, 90, 56, 22, 72, 32, 46, 17, 10, 6, 5, 2, 2, 0],
+  UMTS: [37, 279, 172, 75, 34, 33, 114, 26, 26, 18, 5, 7, 9, 0],
+  LTE:  [1815, 1112, 831, 711, 554, 483, 162, 36, 46, 21, 6, 13, 16, 1],
 };
-const antenas = provincias.map((_,i) => datos.GSM[i]+datos.UMTS[i]+datos.LTE[i]);
+const antenasTotal = provLabels.map((_,i) => datosProv.GSM[i]+datosProv.UMTS[i]+datosProv.LTE[i]);
 
 function heatColors(vals) {
   const max = Math.max(...vals) || 1;
@@ -267,19 +258,19 @@ function heatColors(vals) {
 
 const barChart = new Chart(document.getElementById('barChart'), {
   type: 'bar',
-  data: { labels: provincias, datasets: [{ label:'Antenas', data: antenas, backgroundColor: heatColors(antenas), borderRadius:4, borderSkipped:false }] },
+  data: { labels: provLabels, datasets: [{ label:'Antenas', data: antenasTotal, backgroundColor: heatColors(antenasTotal), borderRadius:4, borderSkipped:false }] },
   options: {
     responsive:true, maintainAspectRatio:false,
-    plugins: { legend:{display:false}, tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.y.toLocaleString('es-AR')} antenas`}} },
-    scales: {
-      x: { ticks:{font:{size:11},autoSkip:false,maxRotation:35}, grid:{display:false} },
-      y: { ticks:{font:{size:11},callback:v=>v.toLocaleString('es-AR')}, grid:{color:'rgba(0,0,0,0.06)'} }
+    plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.y.toLocaleString('es-AR')} antenas`}} },
+    scales:{
+      x:{ ticks:{font:{size:11},autoSkip:false,maxRotation:35}, grid:{display:false} },
+      y:{ ticks:{font:{size:11},callback:v=>v.toLocaleString('es-AR')}, grid:{color:'rgba(0,0,0,0.06)'} }
     }
   }
 });
 
 function actualizarGrafico(tipo) {
-  const vals = tipo==='todos' ? antenas : datos[tipo];
+  const vals = tipo==='todos' ? antenasTotal : datosProv[tipo];
   barChart.data.datasets[0].data = vals;
   barChart.data.datasets[0].backgroundColor = heatColors(vals);
   barChart.update();
@@ -299,13 +290,18 @@ function aplicarFiltros() {
   actualizarGrafico(tipo);
 }
 
-// — Llamados por año —
-const valsAño = [9887,8054,7819,9088,9367,6935,6141,4146];
+const valsAño   = [9887, 8054, 7819, 9088, 9367, 6935, 6141, 4146];
+const labelsAño = ["2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024*"];
 new Chart(document.getElementById('añosChart'), {
   type: 'bar',
   data: {
-    labels: ['2017','2018','2019','2020','2021','2022','2023','2024*'],
-    datasets: [{ data: valsAño, backgroundColor: valsAño.map(n=>{const t=n/9887;return `rgb(${Math.round(234+(15-234)*t)},${Math.round(128+(98-128)*t)},48)`;}), borderRadius:3, borderSkipped:false }]
+    labels: labelsAño,
+    datasets: [{ data: valsAño,
+      backgroundColor: valsAño.map(n => {
+        const t = n/Math.max(...valsAño);
+        return `rgb(${Math.round(234+(15-234)*t)},${Math.round(128+(98-128)*t)},48)`;
+      }),
+      borderRadius:3, borderSkipped:false }]
   },
   options: {
     responsive:true, maintainAspectRatio:false,
@@ -317,21 +313,14 @@ new Chart(document.getElementById('añosChart'), {
   }
 });
 
-// — Derivaciones —
-const derivaciones = [
-  { label:'Solo información y orientación', pct:51.7, color:'#D85A30' },
-  { label:'"Conflicto familiar" (no violencia)', pct:11.3, color:'#BA7517' },
-  { label:'Fuera de CABA, no se desplazó', pct:10.1, color:'#BA7517' },
-  { label:'Víctima no aceptó intervención', pct:8.7, color:'#EF9F27' },
-  { label:'Sin móvil disponible', pct:4.0, color:'#E24B4A' },
-  { label:'Equipo móvil desplazado', pct:3.6, color:'#639922' },
-];
-const lista = document.getElementById('derivaciones-list');
+const derivaciones = [{"label": "Solo información y orientación", "pct": 51.7, "color": "#D85A30"}, {"label": "\"Conflicto familiar\" (no violencia)", "pct": 11.3, "color": "#BA7517"}, {"label": "Fuera de CABA, no se desplazó", "pct": 10.1, "color": "#BA7517"}, {"label": "Víctima no aceptó intervención", "pct": 8.7, "color": "#EF9F27"}, {"label": "Sin móvil disponible", "pct": 4.0, "color": "#E24B4A"}, {"label": "Equipo móvil desplazado", "pct": 3.6, "color": "#639922"}];
+const maxPct = Math.max(...derivaciones.map(d=>d.pct));
+const lista  = document.getElementById('derivaciones-list');
 derivaciones.forEach(d => {
   lista.innerHTML += `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
     <span style="font-size:12px;color:#2c2c2a;flex:1;">${d.label}</span>
     <div style="width:120px;height:6px;background:#ebebea;border-radius:3px;flex-shrink:0;">
-      <div style="width:${d.pct/51.7*100}%;height:6px;border-radius:3px;background:${d.color};"></div>
+      <div style="width:${(d.pct/maxPct*100).toFixed(1)}%;height:6px;border-radius:3px;background:${d.color};"></div>
     </div>
     <span style="font-size:12px;font-weight:500;color:${d.color};min-width:36px;text-align:right;">${d.pct}%</span>
   </div>`;
