@@ -250,25 +250,32 @@ function aplicarFiltros() {
 }
 
 const provincias = ['CABA','Bs. Aires','Córdoba','Santa Fe','Misiones','Corrientes','Río Negro','La Pampa','San Luis','T. del Fuego','Mendoza','Entre Ríos','San Juan','Santa Cruz'];
-const antenas   = [1908, 1481, 1059, 808, 660, 531, 322, 79, 59, 45, 39, 39, 27, 1];
-const maxVal = antenas[0];
+const datos = {
+  GSM:  [56,  90,  56,  22,  72,  32,  46, 17, 10,  6,  5,  2,  2, 0],
+  UMTS: [37, 279, 172,  75,  34,  33, 114, 26, 26, 18,  5,  7,  9, 0],
+  LTE:  [1815,1112,831, 711, 554, 483, 162, 36, 46, 21,  6, 13, 16, 1],
+};
+const antenas = datos.GSM.map((_, i) => datos.GSM[i] + datos.UMTS[i] + datos.LTE[i]);
 
-const colores = antenas.map(n => {
-  const t = Math.pow(n / maxVal, 0.45);
-  const r = Math.round(240 + (30  - 240) * t);
-  const g = Math.round(244 + (58  - 244) * t);
-  const b = Math.round(255 + (138 - 255) * t);
-  return `rgb(${r},${g},${b})`;
-});
+function heatColors(vals) {
+  const max = Math.max(...vals) || 1;
+  return vals.map(n => {
+    const t = Math.pow(n / max, 0.45);
+    const r = Math.round(240 + (30  - 240) * t);
+    const g = Math.round(244 + (58  - 244) * t);
+    const b = Math.round(255 + (138 - 255) * t);
+    return `rgb(${r},${g},${b})`;
+  });
+}
 
-new Chart(document.getElementById('barChart'), {
+const barChart = new Chart(document.getElementById('barChart'), {
   type: 'bar',
   data: {
     labels: provincias,
     datasets: [{
       label: 'Antenas',
       data: antenas,
-      backgroundColor: colores,
+      backgroundColor: heatColors(antenas),
       borderRadius: 4,
       borderSkipped: false,
     }]
@@ -285,17 +292,33 @@ new Chart(document.getElementById('barChart'), {
       }
     },
     scales: {
-      x: {
-        ticks: { font: { size: 11 }, autoSkip: false, maxRotation: 35 },
-        grid: { display: false }
-      },
-      y: {
-        ticks: { font: { size: 11 }, callback: v => v.toLocaleString('es-AR') },
-        grid: { color: 'rgba(0,0,0,0.06)' }
-      }
+      x: { ticks: { font: { size: 11 }, autoSkip: false, maxRotation: 35 }, grid: { display: false } },
+      y: { ticks: { font: { size: 11 }, callback: v => v.toLocaleString('es-AR') }, grid: { color: 'rgba(0,0,0,0.06)' } }
     }
   }
 });
-</script>
+
+function actualizarGrafico(tipo) {
+  const vals = tipo === 'todos' ? antenas : datos[tipo];
+  barChart.data.datasets[0].data = vals;
+  barChart.data.datasets[0].backgroundColor = heatColors(vals);
+  barChart.update();
+}
+
+function aplicarFiltros() {
+  const region = document.getElementById('filtroRegion').value;
+  const tipo   = document.getElementById('filtroTipo').value;
+
+  document.querySelectorAll('#regionGrid .region-card').forEach(card => {
+    const matchRegion = region === 'todas' || card.dataset.region === region;
+    card.classList.toggle('hidden', !matchRegion);
+    card.querySelectorAll('.antena-row').forEach(row => {
+      if (tipo === 'todos') row.classList.remove('dimmed');
+      else row.classList.toggle('dimmed', row.dataset.tipo !== tipo);
+    });
+  });
+
+  actualizarGrafico(tipo);
+}</script>
 </body>
 </html>
