@@ -264,11 +264,11 @@ HTML = f"""<!DOCTYPE html>
   h1 {{ font-size: 20px; font-weight: 500; color: #e8e6e0; margin-bottom: 4px; }}
   .subtitle {{ font-size: 13px; color: #5f5e5a; margin-bottom: 2rem; }}
   .kpis {{ display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 2rem; }}
-  .kpi {{ width: 180px; flex-shrink: 0; background: #1e1e1b; border-radius: 8px; padding: 14px 16px; }}
+  .kpi {{ width: 180px; flex-shrink: 0; background: #f5f4f0; border-radius: 8px; padding: 14px 16px; }}
   @media (max-width: 480px) {{ .kpi {{ width: calc(50% - 5px); }} }}
-  .kpi-label {{ font-size: 12px; color: #888780; margin-bottom: 4px; }}
-  .kpi-value {{ font-size: 24px; font-weight: 500; color: #e8e6e0; }}
-  .kpi-sub {{ font-size: 11px; color: #5f5e5a; margin-top: 3px; }}
+  .kpi-label {{ font-size: 12px; color: #5f5e5a; margin-bottom: 4px; }}
+  .kpi-value {{ font-size: 24px; font-weight: 500; color: #1a1a18; }}
+  .kpi-sub {{ font-size: 11px; color: #888780; margin-top: 3px; }}
   .section-title {{ font-size: 11px; font-weight: 500; color: #5f5e5a; letter-spacing: 0.06em; text-transform: uppercase; margin: 2rem 0 1rem; }}
   .legend {{ display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: #888780; margin-bottom: 1rem; }}
   .legend span {{ display: flex; align-items: center; gap: 5px; }}
@@ -323,12 +323,12 @@ HTML = f"""<!DOCTYPE html>
   <div class="kpi"><p class="kpi-label">Llamados a Línea 137</p><p class="kpi-value">{fmt(total_llamados)}</p><p class="kpi-sub">2017 – jul.2024</p></div>
   <div class="kpi"><p class="kpi-label">Equipo móvil desplazado</p><p class="kpi-value">{fmt(equipo_desplazado)}</p><p class="kpi-sub">solo el {pct_desplazado}% de los llamados</p></div>
   <div class="kpi"><p class="kpi-label">Antenas registradas</p><p class="kpi-value">{fmt(total_antenas)}</p><p class="kpi-sub">GSM + UMTS + LTE</p></div>
-  <div class="kpi" style="border:1.5px dashed #993C1D;background:#1e1e1b;">
+  <div class="kpi" style="border:1.5px dashed #D85A30;background:#f5f4f0;">
     <p class="kpi-label" style="color:#D85A30;">Botones antipánico asignados</p>
     <p class="kpi-value" style="color:#D85A30;">SIN DATO</p>
     <p class="kpi-sub">no hay registro público</p>
   </div>
-  <div class="kpi" style="border:1.5px dashed #993C1D;background:#1e1e1b;">
+  <div class="kpi" style="border:1.5px dashed #D85A30;background:#f5f4f0;">
     <p class="kpi-label" style="color:#D85A30;">Activaciones exitosas con respuesta</p>
     <p class="kpi-value" style="color:#D85A30;">SIN DATO</p>
     <p class="kpi-sub">no hay registro público</p>
